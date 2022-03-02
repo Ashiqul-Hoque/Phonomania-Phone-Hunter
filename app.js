@@ -9,8 +9,10 @@ const search = () => {
 const allMobile = (phones) => {
   const parent = document.getElementById("parent");
   parent.innerHTML = "";
+
   let phone20 = phones.slice(0, 20);
-  console.log(phone20);
+  // console.log(phone20);
+
   if (phone20.length == 0) {
     document.getElementById("massage").style.display = "block";
   } else {
@@ -45,9 +47,8 @@ const detailsData = (id) => {
 const detail = (info) => {
   console.log(info);
   const detailParent = document.getElementById("details");
-
-  let pairs = Object.entries(info.others);
   detailParent.innerHTML = "";
+
   const div2 = document.createElement("div");
   div2.innerHTML = `
     <div class="card my-3 mx-auto p-3" style="max-width: 720px;">
@@ -85,7 +86,25 @@ const detail = (info) => {
             info.mainFeatures.sensors
           })</p>
           <p class="card-text"><span class="fw-bold">Others : </span> ${
-            pairs ? pairs : "No result found"
+            info.others ? info.others : "No result found"
+          }</p>
+          <p class="card-text"><span class="fw-bold">Bluetooth : </span> ${
+            info.others.Bluetooth ? info.others.Bluetooth : "No result found"
+          }</p>
+          <p class="card-text"><span class="fw-bold">GPS : </span>
+           ${info.others.GPS ? info.others.GPS : "No result found"}
+           </p>
+          <p class="card-text"><span class="fw-bold">NFC : </span> ${
+            info.others.NFC ? info.others.NFC : "No result found"
+          }</p>
+          <p class="card-text"><span class="fw-bold">Radio : </span> ${
+            info.others.Radio ? info.others.Radio : "No result found"
+          }</p>
+          <p class="card-text"><span class="fw-bold">USB : </span> ${
+            info.others.USB ? info.others.USB : "No result found"
+          }</p>
+          <p class="card-text"><span class="fw-bold">WLAN : </span> ${
+            info.others.WLAN ? info.others.WLAN : "No result found"
           }</p>
         </div>
       </div>
