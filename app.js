@@ -14,7 +14,6 @@ const allMobile = (phones) => {
   parent.innerHTML = "";
 
   let phone20 = phones.slice(0, 20);
-  // console.log(phone20);
 
   if (phone20.length == 0) {
     document.getElementById("massage").style.display = "block";
@@ -109,7 +108,7 @@ const detail = (info) => {
           <p class="card-text"><span class="fw-bold">Sensors : </span> ${
             info.mainFeatures.sensors
           })</p>
-          <p class="card-text"><span class="fw-bold">Others : </span> ${
+          <p class="card-text"><span class="fw-bold">Others Features : </span> ${
             info.others ? othersSection() : "No result found"
           }</p>
         </div>
