@@ -1,6 +1,9 @@
+// -----------------Search Data Load--------------
 const search = () => {
   const getInput = document.getElementById("inputText").value.toLowerCase();
 
+  const detailParent = document.getElementById("details");
+  detailParent.innerHTML = "";
   fetch(`https://openapi.programming-hero.com/api/phones?search=${getInput}`)
     .then((response) => response.json())
     .then((data) => allMobile(data.data));
@@ -49,8 +52,29 @@ const detail = (info) => {
   const detailParent = document.getElementById("details");
   detailParent.innerHTML = "";
 
-  const div2 = document.createElement("div");
-  div2.innerHTML = `
+  const detailDiv = document.createElement("div");
+
+  const othersSection = () => `
+  <p class="card-text"><span class="fw-bold">Bluetooth : </span> ${
+    info.others.Bluetooth ? info.others.Bluetooth : "No result found"
+  }</p>
+  <p class="card-text"><span class="fw-bold">GPS : </span>
+   ${info.others.GPS ? info.others.GPS : "No result found"}
+   </p>
+  <p class="card-text"><span class="fw-bold">NFC : </span> ${
+    info.others.NFC ? info.others.NFC : "No result found"
+  }</p>
+  <p class="card-text"><span class="fw-bold">Radio : </span> ${
+    info.others.Radio ? info.others.Radio : "No result found"
+  }</p>
+  <p class="card-text"><span class="fw-bold">USB : </span> ${
+    info.others.USB ? info.others.USB : "No result found"
+  }</p>
+  <p class="card-text"><span class="fw-bold">WLAN : </span> ${
+    info.others.WLAN ? info.others.WLAN : "No result found"
+  }</p>`;
+
+  detailDiv.innerHTML = `
     <div class="card my-3 mx-auto p-3" style="max-width: 720px;">
     <div class="row g-0">
       <div class="col-md-4 d-flex justify-content-center align-items-center">
@@ -86,30 +110,12 @@ const detail = (info) => {
             info.mainFeatures.sensors
           })</p>
           <p class="card-text"><span class="fw-bold">Others : </span> ${
-            info.others ? info.others : "No result found"
-          }</p>
-          <p class="card-text"><span class="fw-bold">Bluetooth : </span> ${
-            info.others.Bluetooth ? info.others.Bluetooth : "No result found"
-          }</p>
-          <p class="card-text"><span class="fw-bold">GPS : </span>
-           ${info.others.GPS ? info.others.GPS : "No result found"}
-           </p>
-          <p class="card-text"><span class="fw-bold">NFC : </span> ${
-            info.others.NFC ? info.others.NFC : "No result found"
-          }</p>
-          <p class="card-text"><span class="fw-bold">Radio : </span> ${
-            info.others.Radio ? info.others.Radio : "No result found"
-          }</p>
-          <p class="card-text"><span class="fw-bold">USB : </span> ${
-            info.others.USB ? info.others.USB : "No result found"
-          }</p>
-          <p class="card-text"><span class="fw-bold">WLAN : </span> ${
-            info.others.WLAN ? info.others.WLAN : "No result found"
+            info.others ? othersSection() : "No result found"
           }</p>
         </div>
       </div>
     </div>
   </div>
   `;
-  detailParent.appendChild(div2);
+  detailParent.appendChild(detailDiv);
 };
